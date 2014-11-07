@@ -17,6 +17,8 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\Propel\User as PropelUser;
+use FOS\UserBundle\Propel2\User as Propel2User;
 
 class UserProvider implements UserProviderInterface
 {
@@ -54,8 +56,8 @@ class UserProvider implements UserProviderInterface
      */
     public function refreshUser(SecurityUserInterface $user)
     {
-        if (!$user instanceof UserInterface) {
-            throw new UnsupportedUserException(sprintf('Expected an instance of FOS\UserBundle\Model\UserInterface, but got "%s".', get_class($user)));
+        if (!$user instanceof User && !$user instanceof PropelUser && !$user instanceof Propel2User) {
+            throw new UnsupportedUserException(sprintf('Expected an instance of FOS\UserBundle\Model\User, but got "%s".', get_class($user)));
         }
 
         if (!$this->supportsClass(get_class($user))) {

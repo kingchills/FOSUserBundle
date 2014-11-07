@@ -93,11 +93,28 @@ class FOSUserExtension extends Extension
         $container->setAlias('fos_user.util.token_generator', $config['service']['token_generator']);
         $container->setAlias('fos_user.user_manager', $config['service']['user_manager']);
 
-        if ($config['use_listener'] && isset(self::$doctrineDrivers[$config['db_driver']])) {
-            $listenerDefinition = $container->getDefinition('fos_user.user_listener');
-            $listenerDefinition->addTag(self::$doctrineDrivers[$config['db_driver']]['tag']);
-            if (isset(self::$doctrineDrivers[$config['db_driver']]['listener_class'])) {
-                $listenerDefinition->setClass(self::$doctrineDrivers[$config['db_driver']]['listener_class']);
+        if ($config['use_listener']) {
+            switch ($config['db_driver']) {
+                case 'orm':
+                    $container->getDefinition('fos_user.user_listener')->addTag('doctrine.event_subscriber');
+                    break;
+
+                case 'mongodb':
+                    $container->getDefinition('fos_user.user_listener')->addTag('doctrine_mongodb.odm.event_subscriber');
+                    break;
+
+                case 'couchdb':
+                    $container->getDefinition('fos_user.user_listener')->addTag('doctrine_couchdb.event_subscriber');
+                    break;
+
+                case 'propel':
+                    break;
+
+                case 'propel2':
+                    break;
+
+                default:
+                    break;
             }
         }
 
