@@ -11,7 +11,7 @@
 
 namespace FOS\UserBundle\Propel;
 
-use FOS\UserBundle\Propel\Base\UserGroup;
+use FOS\UserBundle\Propel\Base\UserGroup as BaseUserGroup;
 
 class UserGroup extends BaseUserGroup
 {

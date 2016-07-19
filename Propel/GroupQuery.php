@@ -11,7 +11,7 @@
 
 namespace FOS\UserBundle\Propel;
 
-use FOS\UserBundle\Propel\Base\GroupQuery;
+use FOS\UserBundle\Propel\Base\GroupQuery as BaseGroupQuery;
 
 class GroupQuery extends BaseGroupQuery
 {
