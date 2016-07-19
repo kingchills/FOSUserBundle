@@ -11,7 +11,7 @@
 
 namespace FOS\UserBundle\Propel;
 
-use FOS\UserBundle\Propel\om\BaseUserQuery;
+use FOS\UserBundle\Propel\Base\UserQuery;
 
 class UserQuery extends BaseUserQuery
 {
