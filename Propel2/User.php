@@ -13,7 +13,7 @@ namespace FOS\UserBundle\Propel2;
 
 use FOS\UserBundle\Model\GroupableInterface;
 use FOS\UserBundle\Model\UserInterface;
-use FOS\UserBundle\Prope2\Base\User as BaseUser;
+use FOS\UserBundle\Propel2\Base\User as BaseUser;
 
 class User extends BaseUser implements UserInterface, GroupableInterface
 {
