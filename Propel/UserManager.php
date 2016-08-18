@@ -14,6 +14,8 @@ namespace FOS\UserBundle\Propel;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManager as BaseUserManager;
 use FOS\UserBundle\Util\CanonicalizerInterface;
+use Propel\Runtime\ActiveQuery\PropelQuery;
+use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class UserManager extends BaseUserManager
@@ -40,7 +42,7 @@ class UserManager extends BaseUserManager
      */
     public function deleteUser(UserInterface $user)
     {
-        if (!$user instanceof \Persistent) {
+        if (!$user instanceof ActiveRecordInterface) {
             throw new \InvalidArgumentException('This user instance is not supported by the Propel UserManager implementation');
         }
 
@@ -83,7 +85,7 @@ class UserManager extends BaseUserManager
      */
     public function reloadUser(UserInterface $user)
     {
-        if (!$user instanceof \Persistent) {
+        if (!$user instanceof ActiveRecordInterface) {
             throw new \InvalidArgumentException('This user instance is not supported by the Propel UserManager implementation');
         }
 
@@ -95,7 +97,7 @@ class UserManager extends BaseUserManager
      */
     public function updateUser(UserInterface $user)
     {
-        if (!$user instanceof \Persistent) {
+        if (!$user instanceof ActiveRecordInterface) {
             throw new \InvalidArgumentException('This user instance is not supported by the Propel UserManager implementation');
         }
 
@@ -107,10 +109,10 @@ class UserManager extends BaseUserManager
     /**
      * Create the propel query class corresponding to your queryclass
      *
-     * @return \ModelCriteria the queryClass
+     * @return \Propel\Runtime\ActiveQuery\ModelCriteria the queryClass
      */
     protected function createQuery()
     {
-        return \PropelQuery::from($this->class);
+        return PropelQuery::from($this->class);
     }
 }

@@ -110,9 +110,6 @@ class FOSUserExtension extends Extension
                 case 'propel':
                     break;
 
-                case 'propel2':
-                    break;
-
                 default:
                     break;
             }

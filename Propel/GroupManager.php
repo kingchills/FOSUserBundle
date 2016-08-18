@@ -13,6 +13,8 @@ namespace FOS\UserBundle\Propel;
 
 use FOS\UserBundle\Model\GroupInterface;
 use FOS\UserBundle\Model\GroupManager as BaseGroupManager;
+use Propel\Runtime\ActiveQuery\PropelQuery;
+use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
 
 class GroupManager extends BaseGroupManager
 {
@@ -40,7 +42,7 @@ class GroupManager extends BaseGroupManager
      */
     public function deleteGroup(GroupInterface $group)
     {
-        if (!$group instanceof \Persistent) {
+        if (!$group instanceof ActiveRecordInterface) {
             throw new \InvalidArgumentException('This group instance is not supported by the Propel GroupManager implementation');
         }
 
@@ -83,7 +85,7 @@ class GroupManager extends BaseGroupManager
      */
     public function updateGroup(GroupInterface $group)
     {
-        if (!$group instanceof \Persistent) {
+        if (!$group instanceof ActiveRecordInterface) {
             throw new \InvalidArgumentException('This group instance is not supported by the Propel GroupManager implementation');
         }
 
@@ -93,10 +95,10 @@ class GroupManager extends BaseGroupManager
     /**
     * Create the propel query class corresponding to your queryclass
     *
-    * @return \ModelCriteria the queryClass
+    * @return \Propel\Runtime\ActiveQuery\ModelCriteria the queryClass
     */
     protected function createQuery()
     {
-        return \PropelQuery::from($this->class);
+        return PropelQuery::from($this->class);
     }
 }

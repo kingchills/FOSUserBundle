@@ -5,7 +5,7 @@
         http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
     <class name="FOS\UserBundle\Propel\User">
-        <constraint name="Propel\PropelBundle\Validator\Constraints\UniqueObject">
+        <constraint name="Propel\Bundle\PropelBundle\Validator\Constraints\UniqueObject">
             <option name="fields">username_canonical</option>
             <option name="message">fos_user.username.already_used</option>
             <option name="groups">
@@ -14,7 +14,7 @@
             </option>
         </constraint>
 
-        <constraint name="Propel\PropelBundle\Validator\Constraints\UniqueObject">
+        <constraint name="Propel\Bundle\PropelBundle\Validator\Constraints\UniqueObject">
             <option name="fields">email_canonical</option>
             <option name="message">fos_user.email.already_used</option>
             <option name="groups">
